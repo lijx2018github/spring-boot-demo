@@ -6,6 +6,7 @@ public enum ResultEnum {
     OK("0001", "OK"),
     PARAMS_ERR("4000", "参数错误"),
     SERVICE_ERR("2000", "业务异常"),
+    AUTH_ERR("6000", "登陆认证异常"),
     OTHERS_ERR("9999", "其他异常");
 
     // 构造方法
