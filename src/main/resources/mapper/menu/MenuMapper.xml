@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lijx.demo.meun.mapper.MenuMapper">
+    <!--    <resultMap type="" id="">-->
+    <!--        <result property="" column=""/>-->
+    <!--        <collection property="children" ofType="" javaType="">-->
+    <!--        </collection>-->
+    <!--    </resultMap>-->
+
+    <resultMap type="Menu" id="MenuResult">
+        <result property="id" column="id"/>
+        <result property="menuCode" column="menu_code"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="menuLevel" column="menu_level"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="icon" column="icon"/>
+        <result property="path" column="path"/>
+        <result property="isIndex" column="is_index"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectMenuVo">
+        select id, menu_code, menu_name, menu_level, parent_id, icon, path, is_index, remark from menus
+    </sql>
+
+    <!--    <select id="" resultMap="" parameterType="">-->
+    <!--    </select>-->
+    <select id="selectMenuList" resultMap="MenuResult" parameterType="Menu">
+        <include refid="selectMenuVo"></include>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="menuCode != null  and menuCode != '' ">and menu_code = #{menuCode}</if>
+            <if test="menuName != null  and menuName != '' ">and menu_name = #{menuName}</if>
+            <if test="menuLevel != null  and menuLevel != '' ">and menu_level = #{menuLevel}</if>
+            <if test="parentId != null  and parentId != '' ">and parent_id = #{parentId}</if>
+            <if test="icon != null  and icon != '' ">and icon = #{icon}</if>
+            <if test="path != null  and path != '' ">and path = #{path}</if>
+            <if test="isIndex != null  and isIndex != '' ">and is_index = #{isIndex}</if>
+            <if test="remark != null  and remark != '' ">and remark = #{remark}</if>
+        </where>
+    </select>
+
+
+    <!--    <insert id="" parameterType="">-->
+    <!--    </insert>-->
+</mapper>

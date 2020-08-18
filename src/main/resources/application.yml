@@ -9,6 +9,11 @@ spring:
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
+#    type: com.alibaba.druid.pool.DruidDataSource
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #  type-enums-package:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  # 扫描bean下面的 BE
+  type-aliases-package: com.lijx.**.bean

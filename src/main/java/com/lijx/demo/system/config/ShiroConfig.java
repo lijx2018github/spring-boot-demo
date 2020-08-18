@@ -33,6 +33,7 @@ public class ShiroConfig {
      * @return
      */
     @Bean
+
     public ShiroFilterFactoryBean filterFactoryBean(@Qualifier("securityManager") SecurityManager securityManager) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
@@ -40,9 +41,8 @@ public class ShiroConfig {
         Map<String, String> filterMap = new LinkedHashMap<>();
 
         filterMap.put("/login", "anon");
-
+        filterMap.put("/**", "authc");
         factoryBean.setFilterChainDefinitionMap(filterMap);
-
 //        factoryBean.getLoginUrl()
         return factoryBean;
     }
