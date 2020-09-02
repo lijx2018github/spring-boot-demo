@@ -1,5 +1,6 @@
 package com.lijx.demo.common.result;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.lijx.demo.common.enums.ResultEnum;
 
@@ -7,6 +8,7 @@ public class Result {
     private String code;
     private String description;
     private Object data;
+
 
     public String getCode() {
         return code;
@@ -60,4 +62,16 @@ public class Result {
         this.description = description;
         this.data = data;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                ", data=" + data +
+                '}';
+    }
+
 }

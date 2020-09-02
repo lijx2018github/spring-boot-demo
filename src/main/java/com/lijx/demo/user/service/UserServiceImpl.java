@@ -16,6 +16,7 @@ public class UserServiceImpl implements IUserService {
     public User findUser(String username) {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
+        queryWrapper.eq("user_status", "1");
         return userMapper.selectOne(queryWrapper);
     }
 

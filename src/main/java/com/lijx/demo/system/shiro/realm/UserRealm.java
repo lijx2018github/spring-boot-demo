@@ -44,17 +44,20 @@ public class UserRealm extends AuthorizingRealm {
         // 登陆信息获取username
         String username = token.getUsername();
         User user = userService.findUser(username);
+        // 用户未找到
+        if (null == user) {
+            throw new UnknownAccountException("用户名或密码错误");
+        }
+        // 密码校验
         String password = "";
         if (token.getPassword() != null) {
             password = new String(token.getPassword());
         }
-        if (null == user) {
-            throw new UnknownAccountException("用户名或密码错误");
-        }
         if (!password.equals(user.getPassword())) {
             throw new IncorrectCredentialsException("用户名或密码错误");
         }
-        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, password, getName());
+        // 放入user实体
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(user, password, getName());
 
         return simpleAuthenticationInfo;
     }

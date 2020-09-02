@@ -1,5 +1,6 @@
 package com.lijx.demo.meun.service;
 
+import com.lijx.demo.common.utils.MenuUtils;
 import com.lijx.demo.meun.bean.Menu;
 import com.lijx.demo.meun.mapper.MenuMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ public class MenuServiceImpl implements IMenuService {
 
     @Override
     public List<Menu> selectMenuList(Menu menu) {
-        return menuMapper.selectMenuList(menu);
+        // 查询全部菜单
+        List<Menu> allMenu = menuMapper.selectMenuList(menu);
+        // 处理下级菜单到children
+        MenuUtils.getParseChildren(allMenu);
+
+        return null;
     }
 }

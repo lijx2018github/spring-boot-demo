@@ -15,12 +15,13 @@
         <result property="parentId" column="parent_id"/>
         <result property="icon" column="icon"/>
         <result property="path" column="path"/>
+        <result property="component" column="component"/>
         <result property="isIndex" column="is_index"/>
         <result property="remark" column="remark"/>
     </resultMap>
 
     <sql id="selectMenuVo">
-        select id, menu_code, menu_name, menu_level, parent_id, icon, path, is_index, remark from menus
+        select id, menu_code, menu_name, menu_level, parent_id, icon, path,component, is_index, remark from menus
     </sql>
 
     <!--    <select id="" resultMap="" parameterType="">-->
@@ -35,6 +36,7 @@
             <if test="parentId != null  and parentId != '' ">and parent_id = #{parentId}</if>
             <if test="icon != null  and icon != '' ">and icon = #{icon}</if>
             <if test="path != null  and path != '' ">and path = #{path}</if>
+            <if test="component != null  and component != '' ">and component = #{component}</if>
             <if test="isIndex != null  and isIndex != '' ">and is_index = #{isIndex}</if>
             <if test="remark != null  and remark != '' ">and remark = #{remark}</if>
         </where>
